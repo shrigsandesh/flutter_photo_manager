@@ -115,7 +115,6 @@ JavaVersion getJavaVersion() {
     // last, use default version with current
     return JavaVersion.current()
 }
-
 android {
     if (project.android.hasProperty('namespace') ||
             getGradle().getGradleVersion().substring(0, 1).toInteger() >= 8) {
@@ -132,6 +131,10 @@ android {
         def version = getJavaVersion()
         sourceCompatibility = version
         targetCompatibility = version
+    }
+
+    kotlinOptions {
+        jvmTarget = getJavaVersion().toString()
     }
 
     defaultConfig {
